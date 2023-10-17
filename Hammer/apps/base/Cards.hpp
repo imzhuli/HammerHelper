@@ -3,11 +3,9 @@
 
 namespace xel_poker {
 
-    static constexpr const char CardFace[] = {
-        'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'
-    };
+    static constexpr const char CardFace[] = {'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'};
 
-    static constexpr const char * CardColor[] = {
+    static constexpr const char* CardColor[] = {
         "DIAMOND",
         "CLUB",
         "HEART",
@@ -22,4 +20,4 @@ namespace xel_poker {
         string ToString() const;
     };
 
-}
+}  // namespace xel_poker
