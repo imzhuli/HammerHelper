@@ -45,8 +45,16 @@ endif()
 	target_compile_definitions(x_${sub_dir_name} PRIVATE ${IPDB})
 endfunction()
 
+function(do_test target)
+	add_test(
+		NAME ${target}
+		COMMAND x_${target}
+	)
+endfunction()
+
 #####
 make_source(cards)
+do_test(cards)
 
 install(TARGETS
 	x_cards
