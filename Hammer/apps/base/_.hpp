@@ -6,8 +6,10 @@ using namespace xel::common;
 #include <iostream>
 #include <string>
 #include <string_view>
+using std::cerr;
+using std::cout;
+using std::endl;
 using std::string;
 using std::string_view;
-using std::cout;
-using std::cerr;
-using std::endl;
+
+#include <cassert>

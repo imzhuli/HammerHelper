@@ -51,6 +51,7 @@ _build_r
 logs
 test_assets/
 /bak
+/logs
 
 # core dump
 core
