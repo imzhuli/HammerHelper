@@ -10,7 +10,7 @@ namespace xel_poker {
     static constexpr const uint8_t CLUB = 1;
     static constexpr const uint8_t DIAMOND = 0;
     static constexpr const char    CardFace[] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'};
-    static constexpr const char*   CardColor[] = {
+    static constexpr const char*   CardColorName[] = {
         "DIAMOND",
         "CLUB",
         "HEART",
@@ -100,37 +100,40 @@ namespace xel_poker {
     };
 
     struct xCard {
-        uint8_t Index = -1;
-        uint8_t Value = -1;
-        uint8_t Face = -1;
-        uint8_t Color = -1;
+            uint8_t Index = -1;
+            uint8_t Value = -1;
+            uint8_t Face = -1;
+            uint8_t Color = -1;
 
-        string ToString() const;
-
-        X_STATIC_INLINE size_t GetIndex(uint8_t Face, uint8_t Color) {
-            assert(Color < Length(CardColor));
-            return CardIndex[Color][(size_t)Face];
-        }
-
-        std::strong_ordering operator<=>(const xCard& Other) const {
-            if(this->Value < Other.Value) {
-                return std::strong_ordering::less;
+            std::strong_ordering operator<=>(const xCard& Other) const {
+                if (this->Value < Other.Value) {
+                    return std::strong_ordering::less;
+                }
+                if (this->Value > Other.Value) {
+                    return std::strong_ordering::greater;
+                }
+                return this->Color <=> Other.Color;
             }
-            if(this->Value > Other.Value) {
-                return std::strong_ordering::greater;
+            string ToString() const;
+
+            X_STATIC_INLINE size_t GetIndex(uint8_t Face, uint8_t Color) {
+                assert(Color < Length(CardColorName));
+                return CardIndex[Color][(size_t)Face];
             }
-            return this->Color <=> Other.Value;
-        }
     };
 
     static constexpr const xCard BaseCards[] = {
-        {0, 0, 'A', DIAMOND}, {1, 1, '2', DIAMOND}, {2, 2, '3', DIAMOND},   {3, 3, '4', DIAMOND},   {4, 4, '5', DIAMOND},   {5, 5, '6', DIAMOND}, {6, 6, '7', DIAMOND}, {7, 7, '8', DIAMOND},
-        {8, 8, '9', DIAMOND}, {9, 9, '0', DIAMOND}, {10, 10, 'J', DIAMOND}, {11, 11, 'Q', DIAMOND}, {12, 12, 'K', DIAMOND}, {13, 0, 'A', CLUB},   {14, 1, '2', CLUB},   {15, 2, '3', CLUB},
-        {16, 3, '4', CLUB},   {17, 4, '5', CLUB},   {18, 5, '6', CLUB},     {19, 6, '7', CLUB},     {20, 7, '8', CLUB},     {21, 8, '9', CLUB},   {22, 9, '0', CLUB},   {23, 10, 'J', CLUB},
-        {24, 11, 'Q', CLUB},  {25, 12, 'K', CLUB},  {26, 0, 'A', HEART},    {27, 1, '2', HEART},    {28, 2, '3', HEART},    {29, 3, '4', HEART},  {30, 4, '5', HEART},  {31, 5, '6', HEART},
-        {32, 6, '7', HEART},  {33, 7, '8', HEART},  {34, 8, '9', HEART},    {35, 9, '0', HEART},    {36, 10, 'J', HEART},   {37, 11, 'Q', HEART}, {38, 12, 'K', HEART}, {39, 0, 'A', SPADE},
-        {40, 1, '2', SPADE},  {41, 2, '3', SPADE},  {42, 3, '4', SPADE},    {43, 4, '5', SPADE},    {44, 5, '6', SPADE},    {45, 6, '7', SPADE},  {46, 7, '8', SPADE},  {47, 8, '9', SPADE},
-        {48, 9, '0', SPADE},  {49, 10, 'J', SPADE}, {50, 11, 'Q', SPADE},   {51, 12, 'K', SPADE},
+        {0, 13, 'A', DIAMOND}, {1, 1, '2', DIAMOND}, {2, 2, '3', DIAMOND}, {3, 3, '4', DIAMOND},   {4, 4, '5', DIAMOND},   {5, 5, '6', DIAMOND},   {6, 6, '7', DIAMOND},
+        {7, 7, '8', DIAMOND},  {8, 8, '9', DIAMOND}, {9, 9, '0', DIAMOND}, {10, 10, 'J', DIAMOND}, {11, 11, 'Q', DIAMOND}, {12, 12, 'K', DIAMOND},
+
+        {13, 13, 'A', CLUB},   {14, 1, '2', CLUB},   {15, 2, '3', CLUB},   {16, 3, '4', CLUB},     {17, 4, '5', CLUB},     {18, 5, '6', CLUB},     {19, 6, '7', CLUB},
+        {20, 7, '8', CLUB},    {21, 8, '9', CLUB},   {22, 9, '0', CLUB},   {23, 10, 'J', CLUB},    {24, 11, 'Q', CLUB},    {25, 12, 'K', CLUB},
+
+        {26, 13, 'A', HEART},  {27, 1, '2', HEART},  {28, 2, '3', HEART},  {29, 3, '4', HEART},    {30, 4, '5', HEART},    {31, 5, '6', HEART},    {32, 6, '7', HEART},
+        {33, 7, '8', HEART},   {34, 8, '9', HEART},  {35, 9, '0', HEART},  {36, 10, 'J', HEART},   {37, 11, 'Q', HEART},   {38, 12, 'K', HEART},
+
+        {39, 13, 'A', SPADE},  {40, 1, '2', SPADE},  {41, 2, '3', SPADE},  {42, 3, '4', SPADE},    {43, 4, '5', SPADE},    {44, 5, '6', SPADE},    {45, 6, '7', SPADE},
+        {46, 7, '8', SPADE},   {47, 8, '9', SPADE},  {48, 9, '0', SPADE},  {49, 10, 'J', SPADE},   {50, 11, 'Q', SPADE},   {51, 12, 'K', SPADE},
     };
 
 }  // namespace xel_poker

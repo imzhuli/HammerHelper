@@ -1,11 +1,14 @@
 Language: Cpp
+
+AlignConsecutiveDeclarations: true
 BasedOnStyle: Google
+ColumnLimit: 200
 IndentWidth: 4
+IndentAccessModifiers: true
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All
-ColumnLimit: 200
+PackConstructorInitializers: CurrentLine
 PenaltyBreakAssignment: 2
 PenaltyReturnTypeOnItsOwnLine: 200
 PointerAlignment: Left
-SpaceBeforeParens: Never
-AlignConsecutiveDeclarations: true
+SpaceBeforeParens: ControlStatements

@@ -12,7 +12,7 @@ int main(int, char *[]) {
         if(ReverseCheck != C.Index) {
             Fatal();
         }
-        if (C.Value != C.Index % 13) {
+        if (C.Value % 13 != C.Index % 13) {
             Fatal();
         }
     }
