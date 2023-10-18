@@ -2,6 +2,10 @@
 
 #include <sstream>
 
+#define LESS std::strong_ordering::less
+#define EQUAL std::strong_ordering::equal
+#define GREATER std::strong_ordering::greater
+
 namespace xel_poker {
 
     namespace three_card_poker {
@@ -85,32 +89,58 @@ namespace xel_poker {
             assert(Other.Pattern != ePattern::UNDEFINED);
 
             if (Pattern < Other.Pattern) {
-                return std::strong_ordering::less;
+                return LESS;
             }
             if (Other.Pattern < Pattern) {
-                return std::strong_ordering::greater;
+                return GREATER;
             }
 
-            // special: 23A & QKA:
-            if (Pattern == ePattern::SEQ || Pattern == ePattern::FLUSH_SEQ) {
-                if (Cards[2]->Face != 'A') {
-                    return *Cards[2] <=> *Other.Cards[2];
+            auto C2 = Cards[2];
+            auto C1 = Cards[1];
+            auto C0 = Cards[0];
+
+            auto OC2 = Other.Cards[2];
+            auto OC1 = Other.Cards[1];
+            auto OC0 = Other.Cards[0];
+
+            if (Pattern == ePattern::FLUSH_SEQ || Pattern == ePattern::SEQ) {
+                if (C2->Value < OC2->Value) {
+                    return LESS;
                 }
-                return *Cards[1] <=> *Other.Cards[1];
+                if (C2->Value > OC2->Value) {
+                    return GREATER;
+                }
+                if (C1->Value < OC1->Value) {
+                    return LESS;
+                }
+                if (C1->Value > OC1->Value) {
+                    return GREATER;
+                }
+                // passthrough
             }
 
             if (Pattern == ePattern::PAIR) {
-                auto C = Cards[1];
-                if (Cards[1] == Cards[2]) {
-                    C = Cards[2];
+                if (C0->Value == C1->Value) {
+                    C2 = Cards[1];
+                    C1 = Cards[0];
+                    C0 = Cards[2];
                 }
-                auto OC = Other.Cards[1];
-                if (Other.Cards[1] == Other.Cards[2]) {
-                    OC = Other.Cards[2];
+                if (OC0->Value == OC1->Value) {
+                    OC2 = Other.Cards[1];
+                    OC1 = Other.Cards[0];
+                    OC0 = Other.Cards[2];
                 }
-                return *C <=> *OC;
             }
-            return *Cards[2] <=> *Other.Cards[2];
+
+            auto Order = *C2 <=> *OC2;
+            if (Order != EQUAL) {
+                return Order;
+            }
+            Order = *C1 <=> *OC1;
+            if (Order != EQUAL) {
+                return Order;
+            }
+            return *C0 <=> *OC0;
         }
 
     }  // namespace three_card_poker
