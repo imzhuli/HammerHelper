@@ -100,10 +100,10 @@ namespace xel_poker {
     };
 
     struct xCard {
-        uint8_t Index;
-        uint8_t Value;
-        uint8_t Face;
-        uint8_t Color;
+        uint8_t Index = -1;
+        uint8_t Value = -1;
+        uint8_t Face = -1;
+        uint8_t Color = -1;
 
         string ToString() const;
 
@@ -112,7 +112,15 @@ namespace xel_poker {
             return CardIndex[Color][(size_t)Face];
         }
 
-        std::strong_ordering operator<=>(const xCard& Other) const { return std::strong_ordering::less; }
+        std::strong_ordering operator<=>(const xCard& Other) const {
+            if(this->Value < Other.Value) {
+                return std::strong_ordering::less;
+            }
+            if(this->Value > Other.Value) {
+                return std::strong_ordering::greater;
+            }
+            return this->Color <=> Other.Value;
+        }
     };
 
     static constexpr const xCard BaseCards[] = {
