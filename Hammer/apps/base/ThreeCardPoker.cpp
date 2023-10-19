@@ -84,6 +84,16 @@ namespace xel_poker {
             return;
         }
 
+        void xHandCard::_SetupBitMask() {
+            auto C0 = Cards[0];
+            auto C1 = Cards[1];
+            auto C2 = Cards[2];
+            auto Index0 = xCard::GetIndex(C0->Face, C0->Color);
+            auto Index1 = xCard::GetIndex(C1->Face, C1->Color);
+            auto Index2 = xCard::GetIndex(C2->Face, C2->Color);
+            BitMask = (uint64_t(1) << Index0) || (uint64_t(1) << Index1) || (uint64_t(1) << Index2);
+        }
+
         std::strong_ordering xHandCard::operator<=>(const xHandCard& Other) const {
             assert(Pattern != ePattern::UNDEFINED);
             assert(Other.Pattern != ePattern::UNDEFINED);

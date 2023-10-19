@@ -25,23 +25,29 @@ namespace xel_poker {
         class xHandCard {
             private:
                 const xCard* Cards[3];
+                uint64_t     BitMask;
                 ePattern     Pattern;
 
             public:
                 // X_INLINE xHandCard() : Cards{nullptr, nullptr, nullptr}, Pattern(ePattern::UNDEFINED) {}
                 X_INLINE xHandCard() = delete;
-                X_INLINE xHandCard(const xCard* C0, const xCard* C1, const xCard* C2) : Cards{C0, C1, C2}, Pattern(ePattern::UNDEFINED) { _FindPattern(); }
+                X_INLINE xHandCard(const xCard* C0, const xCard* C1, const xCard* C2) : Cards{C0, C1, C2}, Pattern(ePattern::UNDEFINED) {
+                    _FindPattern();
+                    _SetupBitMask();
+                }
 
-                X_INLINE xHandCard(const xHandCard& Other) = default;
+                X_INLINE            xHandCard(const xHandCard& Other) = default;
                 X_INLINE xHandCard& operator=(const xHandCard& Other) = default;
 
                 string               ToString() const;
+                uint64_t             GetBitMask() const { return BitMask; }
                 ePattern             GetPattern() const { return Pattern; }
                 std::strong_ordering operator<=>(const xHandCard& Other) const;
 
             private:
                 void _Normalize();
                 void _FindPattern();
+                void _SetupBitMask();
         };
 
     }  // namespace three_card_poker
