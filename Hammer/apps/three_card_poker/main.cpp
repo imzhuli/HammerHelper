@@ -21,8 +21,6 @@ int main(int, char *[]) {
         }
     }
 
-    cout << "==============================> " << HandCardEnumeration.size() << endl;
-
     std::sort(HandCardEnumeration.begin(), HandCardEnumeration.end());
     for (auto & C : HandCardEnumeration) {
         cout << C.ToString() << ',' << endl;
