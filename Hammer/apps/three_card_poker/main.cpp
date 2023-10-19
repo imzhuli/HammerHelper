@@ -25,7 +25,7 @@ int main(int, char *[]) {
 
     std::sort(HandCardEnumeration.begin(), HandCardEnumeration.end());
     for (auto & C : HandCardEnumeration) {
-        cout << C.ToString() << endl;
+        cout << C.ToString() << ',' << endl;
     }
 
     return 0;

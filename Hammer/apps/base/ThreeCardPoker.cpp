@@ -17,12 +17,11 @@ namespace xel_poker {
             auto&             C2 = Cards[2];
 
             ss << "{";
-            ss << char(C0->Face) << ":" << CardColorName[C0->Color];
-            ss << ',';
-            ss << char(C1->Face) << ":" << CardColorName[C1->Color];
-            ss << ',';
-            ss << char(C2->Face) << ":" << CardColorName[C2->Color];
-            ss << " -> " << ePatternString[size_t(Pattern)];
+            ss << "{Face:" << char(C0->Face) << ", Color:" << CardColorName[C0->Color] << "},";
+            ss << "{Face:" << char(C1->Face) << ", Color:" << CardColorName[C1->Color] << "},";
+            ss << "{Face:" << char(C2->Face) << ", Color:" << CardColorName[C2->Color] << "},";
+            ss << "Pattern: " << ePatternString[size_t(Pattern)] << ",";
+            ss << "BitMask:0x" << std::hex << BitMask << std::dec;
             ss << "}";
             return ss.str();
         }
@@ -91,7 +90,7 @@ namespace xel_poker {
             auto Index0 = xCard::GetIndex(C0->Face, C0->Color);
             auto Index1 = xCard::GetIndex(C1->Face, C1->Color);
             auto Index2 = xCard::GetIndex(C2->Face, C2->Color);
-            BitMask = (uint64_t(1) << Index0) || (uint64_t(1) << Index1) || (uint64_t(1) << Index2);
+            BitMask = (uint64_t(1) << Index0) | (uint64_t(1) << Index1) | (uint64_t(1) << Index2);
         }
 
         std::strong_ordering xHandCard::operator<=>(const xHandCard& Other) const {
