@@ -18,9 +18,9 @@ namespace xel_poker {
             auto&             C2 = Cards[2];
 
             ss << "{";
-            ss << "C0:Card{Face:'" << char(C0->Face) << "', Color:" << CardColorName[C0->Color] << "},";
-            ss << "C1:Card{Face:'" << char(C1->Face) << "', Color:" << CardColorName[C1->Color] << "},";
-            ss << "C2:Card{Face:'" << char(C2->Face) << "', Color:" << CardColorName[C2->Color] << "},";
+            ss << "C0:XCard{Face:'" << char(C0->Face) << "', Color:" << CardColorName[C0->Color] << "},";
+            ss << "C1:XCard{Face:'" << char(C1->Face) << "', Color:" << CardColorName[C1->Color] << "},";
+            ss << "C2:XCard{Face:'" << char(C2->Face) << "', Color:" << CardColorName[C2->Color] << "},";
             ss << "Pattern: " << ePatternString[size_t(Pattern)] << ",";
             ss << "BitMask:0x" << std::hex << BitMask << std::dec;
             ss << "}";
