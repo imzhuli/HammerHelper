@@ -1,5 +1,6 @@
 #include "./ThreeCardPoker.hpp"
 
+#include <cassert>
 #include <sstream>
 
 #define LESS std::strong_ordering::less
@@ -138,6 +139,36 @@ namespace xel_poker {
                     OC2 = Other.Cards[1];
                     OC1 = Other.Cards[0];
                     OC0 = Other.Cards[2];
+                }
+
+                if (C2->Value < OC2->Value) {
+                    return LESS;
+                }
+                if (C2->Value > OC2->Value) {
+                    return GREATER;
+                }
+
+                if (C0->Value < OC0->Value) {
+                    return LESS;
+                }
+                if (C0->Value > OC0->Value) {
+                    return GREATER;
+                }
+
+                assert(C0->Value == OC0->Value);
+                assert(C1->Value == OC1->Value);
+                assert(C2->Value == OC2->Value);
+
+                if (C2->Value < C0->Value) {
+                    auto Temp = C0;
+                    C0 = C1;
+                    C1 = C2;
+                    C2 = Temp;
+
+                    auto OTemp = OC0;
+                    OC0 = OC1;
+                    OC1 = OC2;
+                    OC2 = OTemp;
                 }
             }
 

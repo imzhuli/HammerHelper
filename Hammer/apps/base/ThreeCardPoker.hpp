@@ -29,8 +29,7 @@ namespace xel_poker {
                 ePattern     Pattern;
 
             public:
-                // X_INLINE xHandCard() : Cards{nullptr, nullptr, nullptr}, Pattern(ePattern::UNDEFINED) {}
-                X_INLINE xHandCard() = delete;
+                X_INLINE xHandCard() : Cards{}, BitMask{}, Pattern{ePattern::UNDEFINED} {};
                 X_INLINE xHandCard(const xCard* C0, const xCard* C1, const xCard* C2) : Cards{C0, C1, C2}, Pattern(ePattern::UNDEFINED) {
                     _FindPattern();
                     _SetupBitMask();
@@ -42,6 +41,7 @@ namespace xel_poker {
                 string               ToString() const;
                 uint64_t             GetBitMask() const { return BitMask; }
                 ePattern             GetPattern() const { return Pattern; }
+                bool                 operator==(const xHandCard& Other) const { return BitMask == Other.BitMask; }
                 std::strong_ordering operator<=>(const xHandCard& Other) const;
 
             private:

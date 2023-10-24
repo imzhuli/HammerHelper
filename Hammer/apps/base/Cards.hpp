@@ -16,7 +16,7 @@ namespace xel_poker {
         "HEART",
         "SPADE",
     };
-    static constexpr const size_t CardIndex[4][256] = {
+    static constexpr const size_t CardIndex[4][256] = { // CardIndex[Color][Index]
         {
             size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1),
             size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1), size_t(-1),
