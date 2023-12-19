@@ -172,8 +172,9 @@ namespace xel_poker {
                 return this->Color <=> Other.Color;
             }
 
-            string ToMark() const;
-            string ToString() const;
+            string   ToMark() const;
+            string   ToString() const;
+            uint64_t ToBitmask() const { return uint64_t(1) << Index; }
 
             X_STATIC_INLINE size_t GetIndex(uint8_t Face, uint8_t Color) {
                 assert(Color < Length(CardColorName));
