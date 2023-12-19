@@ -55,12 +55,15 @@ endfunction()
 #####
 make_source(cards)
 do_test(cards)
-make_source(three_card_poker)
-do_test(three_card_poker)
+make_source(teenpatti)
+do_test(teenpatti)
+make_source(pointsrummy)
+do_test(pointsrummy)
 
 install(TARGETS
 	x_cards
-	x_three_card_poker
+	x_teenpatti
+	x_pointsrummy
 
 	RUNTIME DESTINATION bin
 	ARCHIVE DESTINATION lib

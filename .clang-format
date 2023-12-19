@@ -2,13 +2,13 @@ Language: Cpp
 
 AlignConsecutiveDeclarations: true
 BasedOnStyle: Google
-ColumnLimit: 200
+ColumnLimit: 170
 IndentWidth: 4
 IndentAccessModifiers: true
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All
 PackConstructorInitializers: CurrentLine
 PenaltyBreakAssignment: 2
-PenaltyReturnTypeOnItsOwnLine: 200
+PenaltyReturnTypeOnItsOwnLine: 170
 PointerAlignment: Left
 SpaceBeforeParens: ControlStatements
