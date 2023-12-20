@@ -1,14 +1,66 @@
-Language: Cpp
+---
+### General config, applies to all languages ###
+BasedOnStyle: Google
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Always
+ColumnLimit: 200
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: true
+NamespaceIndentation: All
+Cpp11BracedListStyle: false
+
+DerivePointerAlignment: false
+PointerAlignment: Middle
+ReferenceAlignment: Middle
+QualifierAlignment: Leave
+
+PackConstructorInitializers: CurrentLine
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AccessModifierOffset: -4
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
 
 AlignConsecutiveDeclarations: true
-BasedOnStyle: Google
-ColumnLimit: 170
-IndentWidth: 4
-IndentAccessModifiers: true
-MaxEmptyLinesToKeep: 1
-NamespaceIndentation: All
-PackConstructorInitializers: CurrentLine
-PenaltyBreakAssignment: 2
-PenaltyReturnTypeOnItsOwnLine: 170
-PointerAlignment: Left
+PenaltyBreakAssignment: 1
 SpaceBeforeParens: ControlStatements
+
+AlignTrailingComments: false
+AlignAfterOpenBracket: BlockIndent
+AlignOperands: DontAlign
+AlwaysBreakAfterReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 200
+
+BraceWrapping:
+    AfterClass: false
+    SplitEmptyFunction: false
+    SplitEmptyRecord: false
+
+---
+### C++ specific config ###
+Language:        Cpp
+Standard:        c++20
+
+IncludeCategories:
+  - Regex:           '".*"'
+    Priority:        1
+  - Regex:           '^<.*\.h>'
+    Priority:        2
+  - Regex:           '^<.*'
+    Priority:        3
+
+---
+### ObjC specific config ###
+Language:        ObjC
+# ObjCBinPackProtocolList: Auto
+ObjCBlockIndentWidth: 4
+# ObjCBreakBeforeNestedBlockParam: true
+# ObjCSpaceAfterProperty: false
+# ObjCSpaceBeforeProtocolList: true
+---
+### Java specific config ###
+Language:        Java
+# BreakAfterJavaFieldAnnotations: false
+JavaImportGroups: ['org.godotengine', 'android', 'androidx', 'com.android', 'com.google', 'java', 'javax']
