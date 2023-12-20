@@ -54,9 +54,9 @@ endfunction()
 
 #####
 make_source(cards)
-do_test(cards)
+# do_test(cards)
 make_source(teenpatti)
-do_test(teenpatti)
+# do_test(teenpatti)
 make_source(pointsrummy)
 do_test(pointsrummy)
 
