@@ -5,9 +5,10 @@ BasedOnStyle: Google
 IndentWidth: 4
 TabWidth: 4
 UseTab: Always
-ColumnLimit: 200
+ColumnLimit: 170
 MaxEmptyLinesToKeep: 1
 KeepEmptyLinesAtTheStartOfBlocks: true
+KeepEmptyLinesAtEOF: true
 NamespaceIndentation: All
 Cpp11BracedListStyle: false
 
@@ -31,7 +32,7 @@ AlignTrailingComments: false
 AlignAfterOpenBracket: BlockIndent
 AlignOperands: DontAlign
 AlwaysBreakAfterReturnType: None
-PenaltyReturnTypeOnItsOwnLine: 200
+PenaltyReturnTypeOnItsOwnLine: 170
 
 BraceWrapping:
     AfterClass: false
