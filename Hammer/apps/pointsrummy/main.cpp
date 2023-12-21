@@ -19,6 +19,23 @@ static uint8_t Deck2[] = {
 
 static uint8_t ShuffledDeck2[Length(Deck2)] = {};
 
+constexpr size_t CountOnes(uint64_t I) {
+	if (!I) {
+		return 0;
+	}
+	size_t Count = 1;
+	while (true) {
+		uint64_t M1 = I - 1;
+		uint64_t IAndM1 = I & M1;
+		if (!IAndM1) {
+			return Count;
+		}
+		++Count;
+		I &= IAndM1;
+	}
+	return Count;
+}
+
 void Shuffle() {
 	std::random_device rd;
 	std::mt19937	   g(rd());
@@ -42,50 +59,6 @@ std::bitset<64> ToBits(uint64_t Bits) {
 }
 
 int main(int argc, char * argv[]) {
-
-	foo();
-	auto All = std::vector<std::vector<xCard>>();
-
-	Shuffle();
-
-	auto HandCards = xHandCard();
-	auto Cards = std::vector<xCard>();
-	for (int i = 0; i < 14; ++i) {
-		auto CardPtr = &BaseCards[ShuffledDeck2[i]];
-		HandCards.AddCards(CardPtr->GetBit());
-		Cards.push_back(*CardPtr);
-	}
-
-	auto B0 = std::bitset<64>(HandCards.Cards0);
-	auto B1 = std::bitset<64>(HandCards.Cards1);
-	cout << B0 << " " << B1 << endl;
-
-	do {
-		auto Cards0 = GetCardsFromBitsSorted(HandCards.Cards0);
-		auto Cards1 = GetCardsFromBitsSorted(HandCards.Cards1);
-		cout << "Card0: ";
-		for (auto & C : Cards0) {
-			cout << C.ToMark() << " ";
-		}
-		cout << endl;
-		cout << "Card1: ";
-		for (auto & C : Cards1) {
-			cout << C.ToMark() << " ";
-		}
-		cout << endl;
-	} while (false);
-
-	for (auto PSB : PureSequenceBits) {
-		auto Copy = HandCards;
-
-		// cout << ToBits(Copy.Cards0) << endl;
-		// cout << ToBits(PSB) << endl;
-		// cout << ToBits(Copy.Cards0 & PSB) << endl;
-
-		if ((PSB & Copy.Cards0) == PSB) {
-			PrintCardBits(PSB, "Found_PureSequence");
-		}
-	}
-
+	//
 	return 0;
 }

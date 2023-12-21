@@ -28,7 +28,7 @@ AlignConsecutiveDeclarations: true
 PenaltyBreakAssignment: 1
 SpaceBeforeParens: ControlStatements
 
-AlignTrailingComments: false
+AlignTrailingComments: true
 AlignAfterOpenBracket: BlockIndent
 AlignOperands: DontAlign
 AlwaysBreakAfterReturnType: None

@@ -24,6 +24,14 @@ namespace xel_poker {
 	static constexpr const char * CardColorMark[] = {
 		"♦️", "♣️", "♥️", "♠️", "👽", "🤡",
 	};
+
+	static constexpr uint64_t CardColorMask[] = {
+		0x1fff,			  // DIAMOND
+		0x3ffe000,		  // CLUB
+		0x7ffc000000,	  // HEART
+		0xfff8000000000,  // SPADE
+	};
+
 	static constexpr const size_t TOTAL_CARDS = 54;
 
 	static constexpr const size_t CardIndex[6][256] = {
