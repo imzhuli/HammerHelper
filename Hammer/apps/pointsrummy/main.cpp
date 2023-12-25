@@ -89,6 +89,7 @@ void GameDiscard() {
 	memcpy(PlayerCards, Deck, PlayerBaseCardCount * sizeof(*PlayerCards));
 	DeckCardCount -= PlayerBaseCardCount;
 
+	PlayerHandCard.Reset();
 	for (size_t i = 0; i < PlayerBaseCardCount; ++i) {
 		auto CardPtr = &BaseCards[PlayerCards[i]];
 		PlayerHandCard.AddCards(CardPtr->GetBit());
