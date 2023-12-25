@@ -1,9 +1,12 @@
 #include "./Rummy.hpp"
 
+#include "./Rummy_WinnerHandCards.cpp.pred"
+
 #include <algorithm>
 #include <array>
 #include <cstring>
 #include <ios>
+#include <set>
 #include <sstream>
 #include <stack>
 
@@ -13,18 +16,14 @@ namespace xel_poker {
 
 	namespace rummy {
 
-		void foo() {}
+		X_EXTERN const xHandCard WinnerHandCards_10[459964];
 
-		[[maybe_unused]] static std::string MeldString(uint64_t Bits) {
-			auto SS = std::stringstream();
-			SS << "[ ";
-			auto Cards = GetCardsFromBitsSorted(Bits);
-			for (auto & C : Cards) {
-				SS << C.ToMark() << " ";
-			}
-			SS << ']';
-			return SS.str();
+		bool IsWinnerHand_10(const xHandCard & HC) {
+			//
+			return std::binary_search(WinnerHandCards_10, WinnerHandCards_10 + Length(WinnerHandCards_10), HC);
 		}
+
+		static std::set<xHandCard> WinnerHandCards;
 
 		void MakeShortWinnerMelds() {
 			std::vector<std::array<xMeld, 4>> WinnerMeldsByLength[10 + 1];
@@ -63,6 +62,8 @@ namespace xel_poker {
 					if (!CurrHandCards.AddCards(CurrentMeld.Bits)) {
 						continue;
 					} else {
+						WinnerHandCards.insert(CurrHandCards);
+
 						// found:
 						++TotalFound;
 
@@ -104,9 +105,20 @@ namespace xel_poker {
 			} while (false);
 
 			cout << "TotalFound: " << TotalFound << endl;
+			cout << "WinnerHandCards size: " << WinnerHandCards.size() << endl;
+
+			// cout << hex;
+			// for (auto HC : WinnerHandCards) {
+			// 	cout << "{ 0x" << HC.Cards0 << ", 0x" << HC.Cards1 << " }, ";
+			// }
+			// cout << dec;
+			// cout << endl;
 		}
 
-		static auto _init = xInstantRun([] { MakeShortWinnerMelds(); });
+		static auto _init = xInstantRun([] {
+			assert(xHandCard() != WinnerHandCards_10[SafeLength(WinnerHandCards_10)]);
+			// MakeShortWinnerMelds();
+		});
 
 	}  // namespace rummy
 

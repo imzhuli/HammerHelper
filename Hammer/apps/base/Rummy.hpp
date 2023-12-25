@@ -456,6 +456,8 @@ namespace xel_poker {
 				return Result;
 			}
 		};
+		X_INLINE bool operator==(const xHandCard & lhs, const xHandCard & rhs) { return lhs.Cards0 == rhs.Cards0 && lhs.Cards1 == rhs.Cards1; }
+		X_INLINE bool operator!=(const xHandCard & lhs, const xHandCard & rhs) { return !(lhs == rhs); }
 		X_INLINE std::strong_ordering operator<=>(const xHandCard & lhs, const xHandCard & rhs) {
 			if (lhs.Cards0 < rhs.Cards0) {
 				return std::strong_ordering::less;
@@ -465,7 +467,7 @@ namespace xel_poker {
 			return lhs.Cards1 <=> rhs.Cards1;
 		}
 
-		X_EXTERN void foo();
+		X_EXTERN bool IsWinnerHand_10(const xHandCard & HC);
 
 	}  // namespace rummy
 

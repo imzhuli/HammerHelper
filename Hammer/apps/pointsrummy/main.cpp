@@ -173,9 +173,25 @@ void GamePlayerRound() {
 
 void GameCheckRound() {
 	if (0 == DeckCardCount) {
+		cout << "No winner" << endl;
 		State = GS_FinishRound;
 		return;
 	}
+
+	for (auto PS : SequencesMelds) {
+		if ((PS.Bits & PlayerHandCard.Cards0) != PS.Bits) {
+			continue;
+		}
+		auto Copy = PlayerHandCard;
+		Copy.RemoveCards(PS.Bits);
+
+		if (IsWinnerHand_10(Copy)) {
+			cout << "Winner" << endl;
+			State = GS_FinishRound;
+			return;
+		}
+	}
+
 	State = GS_PlayerRound;
 	return;
 }
@@ -192,6 +208,8 @@ void GameEnd() {
 }
 
 int main(int argc, char * argv[]) {
+
+	// foo();
 
 	while (true) {
 		switch (State) {
