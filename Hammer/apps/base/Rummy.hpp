@@ -52,7 +52,6 @@ namespace xel_poker {
 				{ 0xe000000000000, 3 }, { 0xf000000000000, 4 }, { 0xf800000000000, 5 },
 			},
 		};
-		static_assert(sizeof(SequencesMeldsByColor) == sizeof(const xMeld[132]));
 
 		// copy of SequencesMeldsByColor
 		constexpr const xMeld SequencesMelds[132] = {
@@ -193,6 +192,8 @@ namespace xel_poker {
 			{ 0x8038000000000, 4 },
 			{ 0x8078000000000, 5 },
 		};
+
+		static_assert(sizeof(SequencesMeldsByColor) == sizeof(SequencesMelds));
 
 		constexpr const xMeld SetMelds[65] = {
 			{ 0x4002001, 3 },		{ 0x8004002, 3 },		{ 0x10008004, 3 },		{ 0x20010008, 3 },		{ 0x40020010, 3 },		{ 0x80040020, 3 },

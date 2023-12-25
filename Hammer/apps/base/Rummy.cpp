@@ -81,13 +81,6 @@ namespace xel_poker {
 						}
 						WinnerMelds.push_back(WinMelds);
 
-						// if (TotalFound < 100 || TotalFound > 20700096) {
-						// 	for (size_t t = 1; t <= Level; ++t) {
-						// 		cout << MeldString(Meld[t]) << " ";
-						// 	}
-						// 	cout << endl;
-						// }
-
 						if (Level == 3) {  // no more melds
 							continue;
 						}
@@ -122,9 +115,7 @@ namespace xel_poker {
 			cout << "TotalFound: " << TotalFound << endl;
 		}
 
-		static auto _init = xInstantRun([] {
-			MakeShortWinnerMelds();
-		});
+		static auto _init = xInstantRun([] { MakeShortWinnerMelds(); });
 
 	}  // namespace rummy
 
