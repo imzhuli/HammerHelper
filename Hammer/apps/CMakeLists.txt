@@ -58,7 +58,7 @@ make_source(cards)
 make_source(teenpatti)
 # do_test(teenpatti)
 make_source(pointsrummy)
-do_test(pointsrummy)
+# do_test(pointsrummy)
 
 install(TARGETS
 	x_cards

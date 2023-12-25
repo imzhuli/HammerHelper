@@ -15,15 +15,6 @@ namespace xel_poker {
 
 		void foo() {}
 
-		[[maybe_unused]] static void PrintCardBits(uint64_t Bits, const char * Prefix = "") {
-			auto Cards = GetCardsFromBitsSorted(Bits);
-			cout << Prefix << " ";
-			for (auto & C : Cards) {
-				cout << C.ToMark() << " ";
-			}
-			cout << endl;
-		}
-
 		[[maybe_unused]] static std::string MeldString(uint64_t Bits) {
 			auto SS = std::stringstream();
 			SS << "[ ";

@@ -191,6 +191,9 @@ namespace xel_poker {
 			{ 0x8018000000000, 3 },
 			{ 0x8038000000000, 4 },
 			{ 0x8078000000000, 5 },
+			{ 0xe000000000000, 3 },
+			{ 0xf000000000000, 4 },
+			{ 0xf800000000000, 5 },
 		};
 
 		static_assert(sizeof(SequencesMeldsByColor) == sizeof(SequencesMelds));
@@ -415,6 +418,7 @@ namespace xel_poker {
 			uint64_t Cards1 = 0;
 
 		public:
+			X_INLINE void Reset() { Cards1 = Cards0 = 0; }
 			X_INLINE bool IsNormalized() const { return (Cards0 & Cards1) == Cards1; }
 			X_INLINE void Normalize() {
 				auto Diff = (Cards0 ^ Cards1) & Cards1;
